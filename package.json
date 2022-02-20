@@ -1,0 +1,22 @@
+{
+  "name": "tun-bodyparser",
+  "version": "1.0.0",
+  "description": "bodyparser for tun",
+  "main": "index.js",
+  "scripts": {
+    
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "files": [
+    "dist/*",
+    "src/*",
+    "!/**/__tests__"
+  ],
+  "devDependencies": {
+    "@types/node": "^17.0.18",
+    "tun": "ssh://git@abcssh.pwwhb.com:39802/tunframework/tun.git#v1.0.0"
+  }
+}
