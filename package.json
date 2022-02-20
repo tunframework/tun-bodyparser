@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint {core,tests}/**",
     "build": "rm -rf ./dist/ && tsc --build",
-    "test": "node --loader ts-node/esm ./tests/t01_import_core/index.ts",
+    "test": "ts-mocha -n loader=ts-node/esm -p tsconfig.json tests/**/*.test.ts",
+    "test:watch": "ts-mocha -n loader=ts-node/esm -p tsconfig.json tests/**/*.test.ts -w --watch-extensions ts",
     "release": "standard-version",
     "release:minor": "standard-version --release-as minor",
     "release:patch": "standard-version --release-as patch",
@@ -18,6 +19,7 @@
   "devDependencies": {
     "@commitlint/cli": "^16.2.1",
     "@commitlint/config-conventional": "^16.2.1",
+    "@types/mocha": "^9.1.0",
     "@types/node": "^17.0.18",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
@@ -26,12 +28,14 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
     "lint-staged": "^12.3.4",
+    "mocha": "^9.2.1",
     "prettier": "^2.5.1",
     "simple-git-hooks": "^2.7.0",
     "standard-version": "^9.3.2",
+    "ts-mocha": "^9.0.2",
     "ts-node": "^10.5.0",
-    "typescript": "^4.5.5",
-    "tun": "ssh://git@abcssh.pwwhb.com:39802/tunframework/tun.git#v1.0.0"
+    "tun": "ssh://git@abcssh.pwwhb.com:39802/tunframework/tun.git#v1.0.0",
+    "typescript": "^4.5.5"
   },
   "files": [
     "dist/*",
