@@ -57,7 +57,13 @@ describe('tun-bodyparser', function () {
         // mock data
         // @ts-ignore
         on(eventName, callback) {
-          callback(Buffer.from(JSON.stringify(data)))
+          if (eventName === 'data') {
+            callback(Buffer.from(JSON.stringify(data)))
+          } else if (eventName === 'end') {
+            callback(Buffer.from([]))
+          } else {
+            callback(Buffer.from([]))
+          }
         }
       },
       {}
@@ -92,6 +98,7 @@ describe('tun-bodyparser', function () {
       }
     }
     // assert.deepEqual(ctx.query, ctx.request.query, 'should mount data to two points');
+    assert.deepEqual(ctx.req.body, data, 'should receive the same data')
   })
 
   /*
