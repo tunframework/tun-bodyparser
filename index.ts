@@ -1,6 +1,5 @@
-import { RAW_REQUEST } from 'tun/core/constants/http/symbol.js'
-import { TunComposable } from 'tun/core/TunComposable.js'
-import { TunContext } from 'tun/core/TunContext.js'
+import { RAW_REQUEST } from 'tun'
+import type { TunComposable, TunContext } from 'tun'
 
 // [How about koa-bodyparser](https://github.com/koajs/bodyparser/blob/master/index.js)
 
