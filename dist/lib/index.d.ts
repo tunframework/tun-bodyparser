@@ -4,4 +4,4 @@ declare module 'tun' {
         body: Record<string, any>;
     }
 }
-export default function bodyparser(): TunComposable<TunContext>;
+export declare function bodyparser(): TunComposable<TunContext>;

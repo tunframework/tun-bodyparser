@@ -1,5 +1,5 @@
 import { TunApplication, TunContext } from 'tun'
-import bodyparser from '../../index.js'
+import { bodyparser } from '../../index.js'
 
 // const app = new TunApplication();
 

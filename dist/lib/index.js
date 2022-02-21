@@ -1,5 +1,5 @@
 import { RAW_REQUEST } from 'tun';
-export default function bodyparser() {
+export function bodyparser() {
     return async (ctx, next) => {
         // await handleQuery(ctx);
         if (['GET'].indexOf(ctx.req.method) === -1 && ctx.req.is('json')) {

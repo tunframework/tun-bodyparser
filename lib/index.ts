@@ -10,7 +10,7 @@ declare module 'tun' {
   }
 }
 
-export default function bodyparser(): TunComposable<TunContext> {
+export function bodyparser(): TunComposable<TunContext> {
   return async (ctx, next) => {
     // await handleQuery(ctx);
     if (['GET'].indexOf(ctx.req.method) === -1 && ctx.req.is('json')) {
