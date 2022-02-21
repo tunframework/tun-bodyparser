@@ -41,8 +41,8 @@
   },
   "files": [
     "dist/*",
-    "core/*",
-    "!/**/tests"
+    "!/**/tests",
+    "index.js"
   ],
   "private": true,
   "engines": {

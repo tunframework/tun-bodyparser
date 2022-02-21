@@ -3,7 +3,14 @@ import type { TunComposable, TunContext } from 'tun'
 
 // [How about koa-bodyparser](https://github.com/koajs/bodyparser/blob/master/index.js)
 
-export default function body(): TunComposable<TunContext> {
+// extend tun.TunContext
+declare module 'tun' {
+  interface TunRequest {
+    body: Record<string, any>
+  }
+}
+
+export default function bodyparser(): TunComposable<TunContext> {
   return async (ctx, next) => {
     // await handleQuery(ctx);
     if (['GET'].indexOf(ctx.req.method) === -1 && ctx.req.is('json')) {
@@ -58,7 +65,5 @@ async function handleJSON(ctx: TunContext) {
     req.on('error', reject)
   })
 
-  console.log(typeof dataBuf)
-
-  // ctx.req.fields = dataBuf.length > 0 ? JSON.parse(dataBuf) : {};
+  ctx.req.body = dataBuf.length > 0 ? JSON.parse(dataBuf.toString()) : {}
 }
