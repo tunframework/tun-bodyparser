@@ -1,6 +1,6 @@
 {
   "name": "tun-bodyparser",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "bodyparser for tun",
   "main": "index.js",
   "scripts": {
