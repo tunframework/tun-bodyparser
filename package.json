@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint {core,tests}/**",
-    "build": "rm -rf ./dist/ && tsc --build",
+    "build": "rm -rf ./dist/ && tsc --build && git add dist && git commit -m \"chore: dist\"",
     "test": "ts-mocha -n loader=ts-node/esm -p tsconfig.json tests/**/*.test.ts",
     "test:watch": "ts-mocha -n loader=ts-node/esm -p tsconfig.json tests/**/*.test.ts -w --watch-extensions ts",
-    "release": "standard-version",
-    "release:minor": "standard-version --release-as minor",
-    "release:patch": "standard-version --release-as patch",
-    "release:major": "standard-version --release-as major",
+    "release": "npm run build && standard-version",
+    "release:minor": "npm run build && standard-version --release-as minor",
+    "release:patch": "npm run build && standard-version --release-as patch",
+    "release:major": "npm run build && standard-version --release-as major",
     "push-release": "git push && git push --tags"
   },
   "author": "",
