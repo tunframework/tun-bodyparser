@@ -2,14 +2,6 @@ import { RAW_REQUEST } from 'tun'
 import type { TunComposable, TunContext } from 'tun'
 
 // [How about koa-bodyparser](https://github.com/koajs/bodyparser/blob/master/index.js)
-
-// extend tun.TunContext
-declare module 'tun' {
-  interface TunRequest {
-    body: Record<string, any>
-  }
-}
-
 export function bodyparser(): TunComposable<TunContext> {
   return async (ctx, next) => {
     // await handleQuery(ctx);
@@ -64,6 +56,5 @@ async function handleJSON(ctx: TunContext) {
 
     req.on('error', reject)
   })
-
   ctx.req.body = dataBuf.length > 0 ? JSON.parse(dataBuf.toString()) : {}
 }
