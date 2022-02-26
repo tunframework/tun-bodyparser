@@ -13,7 +13,7 @@
     "release:patch": "npm run dist && standard-version --release-as patch",
     "release:major": "npm run dist && standard-version --release-as major",
     "dist": "npm run build && git add dist && git commit -m \"chore: dist\"",
-    "push-release": "git push && git push --tags"
+    "push-release": "git push --follow-tags"
   },
   "author": "",
   "license": "ISC",
