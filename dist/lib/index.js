@@ -1,4 +1,5 @@
 import { RAW_REQUEST } from 'tun';
+import formidable from 'formidable';
 // [How about koa-bodyparser](https://github.com/koajs/bodyparser/blob/master/index.js)
 export function bodyparser() {
     return async (ctx, next) => {
@@ -6,10 +7,9 @@ export function bodyparser() {
         if (['GET'].indexOf(ctx.req.method) === -1 && ctx.req.is('json')) {
             await handleJSON(ctx);
         }
-        // if (ctx.req.is('multipart')) {
-        //   // save files into os.tmpdir();
-        //   await handleMultiPart(ctx);
-        // }
+        if (ctx.req.is('multipart')) {
+            await handleMultiPart(ctx);
+        }
         return next();
     };
 }
@@ -47,4 +47,35 @@ async function handleJSON(ctx) {
         req.on('error', reject);
     });
     ctx.req.body = dataBuf.length > 0 ? JSON.parse(dataBuf.toString()) : {};
+}
+// https://nodejs.org/en/knowledge/HTTP/servers/how-to-handle-multipart-form-data/
+async function handleMultiPart(ctx) {
+    const _req = ctx.req[RAW_REQUEST];
+    const form = new formidable.IncomingForm();
+    const { fields, files } = await new Promise((resolve, reject) => {
+        form.parse(_req, (err, fields, files) => {
+            if (err)
+                return reject(err);
+            return resolve({ fields, files });
+        });
+    });
+    ctx.req._fields = fields;
+    ctx.req._files = files;
+    // clear array
+    ctx.req.fields = {};
+    ctx.req.files = {};
+    for (const k of fields) {
+        let v = fields[k];
+        if (Array.isArray(v)) {
+            v = v[0];
+        }
+        ctx.req.fields[k] = v;
+    }
+    for (const k of files) {
+        let v = files[k];
+        if (Array.isArray(v)) {
+            v = v[0];
+        }
+        ctx.req.files[k] = v;
+    }
 }
