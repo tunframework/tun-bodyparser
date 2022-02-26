@@ -1,6 +1,6 @@
 {
   "name": "tun-bodyparser",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "bodyparser for tun",
   "main": "dist/index.js",
   "scripts": {
@@ -12,8 +12,8 @@
     "release:minor": "npm run dist && standard-version --release-as minor",
     "release:patch": "npm run dist && standard-version --release-as patch",
     "release:major": "npm run dist && standard-version --release-as major",
-    "dist": "npm run build && git add dist && git commit -m \"chore: dist\"",
-    "push-release": "git push --follow-tags"
+    "push-release": "git push --follow-tags",
+    "dist": "npm run build && git add dist && ((git diff --cached dist | grep \"diff --git a/dist/\" && git commit -m \"chore: dist\") || echo \"no changes in dist\")"
   },
   "author": "",
   "license": "ISC",
