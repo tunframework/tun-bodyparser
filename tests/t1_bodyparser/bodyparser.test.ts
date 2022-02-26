@@ -1,12 +1,5 @@
-import { TunApplication, TunContext } from 'tun'
-import { bodyparser } from '../../index.js'
-
-// const app = new TunApplication();
-
-// app.use(bodyparser())
-// .listen({ port: 3000 });
-
-// @ts-check
+import { TunContext } from 'tun'
+import { bodyparser } from '../../lib/index.js'
 
 import assert from 'assert'
 
@@ -21,84 +14,39 @@ import { fileURLToPath } from 'url'
 
 // const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-function genQuery(
-  data,
-  scope = '',
-  genScope = (parentScope, key) =>
-    parentScope ? `${parentScope}[${key}]` : key
-) {
-  return Object.keys(data)
-    .map((item) => {
-      if (typeof data[item] === 'object') {
-        if (data[item] !== null && data[item] !== undefined) {
-          return genQuery(data[item], genScope(scope, item))
-        }
-      }
-      if (scope) {
-        return `${scope}[${item}]=${data[item]}`
-      }
-      return `${item}=${data[item]}`
-    })
-    .join('&')
-}
+import fetch from 'node-fetch'
+import { prepareApp } from './boot.js'
 
-describe('tun-bodyparser', function () {
-  it("should parse buffered-json-data to ctx.req.fields by ctx.req[RAW_REQUEST].on('data', ...)", async function () {
-    assert(typeof bodyparser === 'function', 'body should be function')
+describe('tun-bodyparser', () => {
+  it('should be able to parse request body', (done) => {
+    const { app, boot } = prepareApp()
 
-    let queryData = { a: 22, b: 33 }
+    const params = { a: 'A', b: 'B' }
     let data = { a: 1, b: '2', c: { d: '4' } }
-    let ctx = new TunContext(
-      {
-        url: `/test?${genQuery(queryData)}`,
-        headers: {
-          'content-type': 'application/json'
-        },
-        // mock data
-        // @ts-ignore
-        on(eventName, callback) {
-          if (eventName === 'data') {
-            callback(Buffer.from(JSON.stringify(data)))
-          } else if (eventName === 'end') {
-            callback(Buffer.from([]))
-          } else {
-            callback(Buffer.from([]))
-          }
-        }
-      },
-      {}
-      // {}
-    )
-
-    let middleware = bodyparser()
-    assert(
-      typeof middleware === 'function',
-      'bodyparser() should return a function'
-    )
-
-    await middleware(ctx, () => Promise.resolve())
-
-    // console.log('ctx', ctx)
-
-    // console.log('fields', ctx.req['fields'])
-    // console.log('data', data)
-
-    // assert(JSON.stringify(ctx.req['fields']) === JSON.stringify(data), 'should convert buf to data correctly.')
-    // assert.deepStrictEqual(ctx.fields, data, 'should convert buf to data correctly.');
-    // assert.deepStrictEqual(ctx.fields, ctx.req.fields, 'should mount data to two points');
-
-    assert.ok(ctx.req.querystring)
-    for (let k in queryData) {
-      if (Object.prototype.hasOwnProperty.call(queryData, k)) {
-        assert.equal(
-          ctx.req.query.get(k),
-          queryData[k],
-          'should convert query to data correctly.'
-        )
+    app.use(async (ctx, next) => {
+      return {
+        params,
+        data
       }
-    }
-    // assert.deepEqual(ctx.query, ctx.request.query, 'should mount data to two points');
-    assert.deepEqual(ctx.req.body, data, 'should receive the same data')
+    })
+    boot(async (server, url) => {
+      try {
+        const querystring = new URLSearchParams(params).toString()
+        const response = await fetch(`${url}?${querystring}`, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          }
+        })
+        const result: any = await response.json()
+
+        assert.deepEqual(result.params, params)
+        assert.deepEqual(result.data, data)
+        done()
+      } catch (error) {
+        done(error)
+      }
+    })
   })
 
   /*
