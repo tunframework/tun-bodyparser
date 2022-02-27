@@ -4,17 +4,16 @@
   "description": "bodyparser for tun",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "eslint {lib,tests}/**",
-    "build": "rm -rf ./dist/ && tsc --build",
+    "lint": "eslint {src,tests}/**",
+    "build": "tsc -p tsconfig.json --incremental && tsc -p tsconfig-cjs.json --incremental && tsc -p tsconfig.json --incremental --outDir lib/types --declaration --emitDeclarationOnly",
     "test": "ts-mocha -n loader=ts-node/esm -p tsconfig.json tests/**/*.test.ts",
     "test:watch": "ts-mocha -n loader=ts-node/esm -p tsconfig.json tests/**/*.test.ts -w --watch-extensions ts",
-    "release": "npm run dist && standard-version",
-    "release:minor": "npm run dist && standard-version --release-as minor",
-    "release:patch": "npm run dist && standard-version --release-as patch",
-    "release:major": "npm run dist && standard-version --release-as major",
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
+    "release:major": "standard-version --release-as major",
     "push-release": "git push --follow-tags",
-    "dist": "npm run build && git add dist && ((git diff --cached dist | grep \"diff --git a/dist/\" && git commit -m \"chore: dist\") || echo \"no changes in dist\")",
-    "test2": "node --loader=ts-node/esm ./lib/test.ts"
+    "prepublish": "npm run build && npm run push-release"
   },
   "author": "",
   "license": "ISC",
@@ -70,10 +69,10 @@
     "*": [
       "prettier --write --ignore-unknown"
     ],
-    "{lib,tests}/**/*.ts": [
+    "{src,tests}/**/*.ts": [
       "eslint --ext .ts"
     ],
-    "{lib,tests}/**/*.d.ts": [
+    "{src,tests}/**/*.d.ts": [
       "eslint --ext .ts"
     ]
   },

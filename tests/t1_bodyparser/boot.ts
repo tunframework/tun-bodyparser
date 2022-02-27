@@ -2,7 +2,7 @@ import { Server } from 'http'
 import { AddressInfo, ListenOptions } from 'net'
 import { TunApplication } from '@tunframework/tun'
 
-import { bodyparser } from '../../lib/index.js'
+import { bodyparser } from '../../src/index.js'
 
 export function prepareApp() {
   const app = new TunApplication()
