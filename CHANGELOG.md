@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://abc.pwwhb.com/gitlab/tunframework/tun-bodyparser/-/compare/v1.2.2...v2.0.0) (2022-02-27)
+
+
+### Bug Fixes
+
+* wrap PersistentFile to File ([a1e4e5f](https://abc.pwwhb.com/gitlab/tunframework/tun-bodyparser/-/commit/a1e4e5f0f96ff98677ead0764d5014ef0e683dc6))
+
 ### [1.2.2](https://abc.pwwhb.com/gitlab/tunframework/tun-bodyparser/-/compare/v1.2.1...v1.2.2) (2022-02-26)
 
 ### [1.2.1](https://abc.pwwhb.com/gitlab/tunframework/tun-bodyparser/-/compare/v1.2.0...v1.2.1) (2022-02-26)
