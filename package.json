@@ -1,5 +1,5 @@
 {
-  "name": "tun-bodyparser",
+  "name": "@tunframework/tun-bodyparser",
   "version": "2.0.1",
   "description": "bodyparser for tun",
   "main": "lib/esm/index.js",
