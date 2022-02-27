@@ -1,6 +1,6 @@
 import { Server } from 'http'
 import { AddressInfo, ListenOptions } from 'net'
-import { TunApplication } from 'tun'
+import { TunApplication } from '@tunframework/tun'
 
 import { bodyparser } from '../../lib/index.js'
 

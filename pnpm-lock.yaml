@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@commitlint/cli': ^16.2.1
   '@commitlint/config-conventional': ^16.2.1
+  '@tunframework/tun': ^2.0.2
   '@types/formidable': ^2.0.4
   '@types/mocha': ^9.1.0
   '@types/node': ^17.0.18
@@ -22,7 +23,6 @@ specifiers:
   standard-version: ^9.3.2
   ts-mocha: ^9.0.2
   ts-node: ^10.5.0
-  tun: ssh://git@abcssh.pwwhb.com:39802/tunframework/tun.git#v1.2.1
   typescript: ^4.5.5
 
 dependencies:
@@ -32,6 +32,7 @@ dependencies:
 devDependencies:
   '@commitlint/cli': registry.npmmirror.com/@commitlint/cli/16.2.1
   '@commitlint/config-conventional': registry.npmmirror.com/@commitlint/config-conventional/16.2.1
+  '@tunframework/tun': registry.npmjs.org/@tunframework/tun/2.0.2
   '@types/mocha': registry.npmmirror.com/@types/mocha/9.1.0
   '@types/node': registry.npmmirror.com/@types/node/17.0.18
   '@typescript-eslint/eslint-plugin': registry.npmmirror.com/@typescript-eslint/eslint-plugin/5.12.0_c467cf9bb49b295941e83ce479a578b7
@@ -49,7 +50,6 @@ devDependencies:
   standard-version: registry.npmmirror.com/standard-version/9.3.2
   ts-mocha: registry.npmmirror.com/ts-mocha/9.0.2_mocha@9.2.1
   ts-node: registry.npmmirror.com/ts-node/10.5.0_f3bd4037939c2ed2942ba074291f8ef2
-  tun: abcssh.pwwhb.com+39802/tunframework/tun/4e329f10c160dcabd71d93e269eeb32810d63b82
   typescript: registry.npmmirror.com/typescript/4.5.5
 
 packages:
@@ -63,13 +63,6 @@ packages:
     resolution: {integrity: sha1-v63NKWwtVJ8d/6VgYZEyyXf1AI4=, tarball: qs/download/qs-6.9.3.tgz}
     engines: {node: '>=0.6'}
     dev: false
-
-  abcssh.pwwhb.com+39802/tunframework/tun/4e329f10c160dcabd71d93e269eeb32810d63b82:
-    resolution: {commit: 4e329f10c160dcabd71d93e269eeb32810d63b82, repo: ssh://git@abcssh.pwwhb.com:39802/tunframework/tun.git, type: git}
-    name: tun
-    version: 1.2.1
-    engines: {node: '>=12.2.0'}
-    dev: true
 
   registry.nlark.com/@ungap/promise-all-settled/1.1.2:
     resolution: {integrity: sha1-qlgEJxHW4ydd033Fl+XTHowpCkQ=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/@ungap/promise-all-settled/download/@ungap/promise-all-settled-1.1.2.tgz}
@@ -131,6 +124,13 @@ packages:
       decamelize: registry.npmmirror.com/decamelize/4.0.0
       flat: registry.npmmirror.com/flat/5.0.2
       is-plain-obj: registry.npmmirror.com/is-plain-obj/2.1.0
+    dev: true
+
+  registry.npmjs.org/@tunframework/tun/2.0.2:
+    resolution: {integrity: sha512-1LSY4KaMAoasYzz0T0EVwuGoalvExnARtjCkusCrbvkrL0CeHj8kn828b0ozc/pco8INtUA4bmeJYBcf6g7LXw==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@tunframework/tun/-/tun-2.0.2.tgz}
+    name: '@tunframework/tun'
+    version: 2.0.2
+    engines: {node: '>=12.2.0'}
     dev: true
 
   registry.npmmirror.com/@babel/code-frame/7.16.7:

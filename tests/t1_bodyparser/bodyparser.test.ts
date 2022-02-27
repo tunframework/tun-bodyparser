@@ -1,4 +1,4 @@
-import { TunContext } from 'tun'
+import { TunContext } from '@tunframework/tun'
 import { bodyparser } from '../../lib/index.js'
 
 import assert from 'assert'

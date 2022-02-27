@@ -1,5 +1,5 @@
-import { RAW_REQUEST } from 'tun'
-import type { TunComposable, TunContext } from 'tun'
+import { RAW_REQUEST } from '@tunframework/tun'
+import type { TunComposable, TunContext } from '@tunframework/tun'
 import formidable from 'formidable'
 
 // [How about koa-bodyparser](https://github.com/koajs/bodyparser/blob/master/index.js)
