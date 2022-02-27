@@ -1,4 +1,5 @@
 import { RAW_REQUEST } from '@tunframework/tun'
+import type { File } from '@tunframework/tun'
 import type { TunComposable, TunContext } from '@tunframework/tun'
 import formidable from 'formidable'
 
@@ -77,18 +78,57 @@ async function handleMultiPart(ctx: TunContext) {
   // clear array
   ctx.req.fields = {}
   ctx.req.files = {}
-  for (const k of fields) {
-    let v = fields[k]
-    if (Array.isArray(v)) {
-      v = v[0]
+  for (const k in fields) {
+    if (Object.prototype.hasOwnProperty.call(fields, k)) {
+      let v = fields[k]
+      if (Array.isArray(v)) {
+        v = v[0]
+      }
+      ctx.req.fields[k] = v
     }
-    ctx.req.fields[k] = v
   }
-  for (const k of files) {
-    let v = files[k]
-    if (Array.isArray(v)) {
-      v = v[0]
+  /**
+   * size: number;
+    path: string;
+    name: string;
+    type: string;
+    lastModifiedDate?: Date;
+    hash?: string;
+    toJSON(): Object;
+
+
+    '_events
+_eventsCount
+_maxListeners
+lastModifiedDate
+filepath
+newFilename
+originalFilename
+mimetype
+hashAlgorithm
+size
+_writeStream
+hash'
+   */
+  for (const k in files) {
+    if (Object.prototype.hasOwnProperty.call(files, k)) {
+      // let v: PersistentFile = files[k]
+      let v: any = files[k]
+      if (Array.isArray(v)) {
+        v = v[0]
+      }
+      const obj: File = {
+        size: v.size,
+        path: v.filepath,
+        name: v.originalFilename,
+        type: v.mimetype,
+        lastModifiedDate: v.lastModifiedDate,
+        hash: v.hash,
+        // @ts-ignore
+        __raw: v
+      }
+      obj.toJSON = () => JSON.stringify(obj)
+      ctx.req.files[k] = obj
     }
-    ctx.req.files[k] = v
   }
 }
