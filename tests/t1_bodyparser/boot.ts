@@ -1,5 +1,5 @@
 import { Server } from 'http'
-import { AddressInfo, ListenOptions } from 'net'
+import type { AddressInfo, ListenOptions } from 'net'
 import { TunApplication } from '@tunframework/tun'
 
 import { bodyparser } from '../../src/index.js'
