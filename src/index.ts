@@ -87,29 +87,7 @@ async function handleMultiPart(ctx: TunContext) {
       ctx.req.fields[k] = v
     }
   }
-  /**
-   * size: number;
-    path: string;
-    name: string;
-    type: string;
-    lastModifiedDate?: Date;
-    hash?: string;
-    toJSON(): Object;
 
-
-    '_events
-_eventsCount
-_maxListeners
-lastModifiedDate
-filepath
-newFilename
-originalFilename
-mimetype
-hashAlgorithm
-size
-_writeStream
-hash'
-   */
   for (const k in files) {
     if (Object.prototype.hasOwnProperty.call(files, k)) {
       // let v: PersistentFile = files[k]
