@@ -9,6 +9,6 @@
     { "type": "perf", "hidden": true },
     { "type": "test", "hidden": true }
   ],
-  "commitUrlFormat": "https://abc.pwwhb.com/gitlab/tunframework/tun-bodyparser/-/commit/{{hash}}",
-  "compareUrlFormat": "https://abc.pwwhb.com/gitlab/tunframework/tun-bodyparser/-/compare/{{previousTag}}...{{currentTag}}"
+  "commitUrlFormat": "https://github.com/tunframework/tun-bodyparser/commit/{{hash}}",
+  "compareUrlFormat": "https://github.com/tunframework/tun-bodyparser/compare/{{previousTag}}...{{currentTag}}"
 }
