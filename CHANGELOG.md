@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.5](https://github.com/tunframework/tun-bodyparser/compare/v2.0.4...v2.0.5) (2022-03-03)
+
+
+### Bug Fixes
+
+* cjs entrypoint ([c67dd54](https://github.com/tunframework/tun-bodyparser/commit/c67dd5437adfc0fba7ac6457e92156629164b45f))
+
 ### [2.0.4](https://github.com/tunframework/tun-bodyparser/compare/v2.0.3...v2.0.4) (2022-02-28)
 
 ### [2.0.3](https://github.com/tunframework/tun-bodyparser/compare/v2.0.2...v2.0.3) (2022-02-27)
